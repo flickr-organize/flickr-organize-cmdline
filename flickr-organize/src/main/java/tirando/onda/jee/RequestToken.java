@@ -1,5 +1,8 @@
 package tirando.onda.jee;
 
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.ObjectOutputStream;
 import java.util.Scanner;
 
 import org.scribe.model.Token;
@@ -15,6 +18,10 @@ import com.flickr4java.flickr.auth.Permission;
 public class RequestToken {
 
 	public static void main(String[] args) throws Exception {
+		String userHome = System.getProperty("user.home");
+		String fileSparator = System.getProperty("file.separator");
+		String fileName = ".flickr-token";
+		
 		Flickr flickr = new Flickr("dc197c9a770087f7989fc4f5dbfdef40", "5092e6a6a1c841ec", new REST());
 		AuthInterface authInterface = flickr.getAuthInterface();
 		
@@ -39,7 +46,18 @@ public class RequestToken {
 		System.out.println("nsid: " + auth.getUser().getId());
 		System.out.println("Realname: " + auth.getUser().getRealName());
 		System.out.println("Username: " + auth.getUser().getUsername());
-		System.out.println("Permission: " + auth.getPermission().getType());		
+		System.out.println("Permission: " + auth.getPermission().getType());
+		
+		try {
+			File file = new File(userHome+fileSparator+fileName);
+			FileOutputStream out = new FileOutputStream(file);
+			ObjectOutputStream os = new ObjectOutputStream(out);
+			os.writeObject(requestToken);
+			os.close();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
 	}
 
 }
