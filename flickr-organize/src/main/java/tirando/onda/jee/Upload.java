@@ -3,6 +3,7 @@ package tirando.onda.jee;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.ObjectInputStream;
+import java.util.Collection;
 
 import org.scribe.model.Token;
 
@@ -15,13 +16,14 @@ import com.flickr4java.flickr.uploader.UploadMetaData;
 import com.flickr4java.flickr.uploader.Uploader;
 
 public class Upload {
-
-	public static void main(String[] args) throws Exception {
+	
+	private Token requestToken;
+	
+	public Upload() {
 		String userHome = System.getProperty("user.home");
 		String fileSparator = System.getProperty("file.separator");
 		String fileName = ".flickr-token";
 		
-		Token requestToken = null;
 		try {
 			File file = new File(userHome+fileSparator+fileName);
 			FileInputStream fin = new FileInputStream(file);
@@ -31,7 +33,9 @@ public class Upload {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		
+	}
+	
+	public void execute(File file, Collection<String> tags) throws Exception {
 		Flickr flickr = new Flickr("dc197c9a770087f7989fc4f5dbfdef40", "5092e6a6a1c841ec", new REST());
 		AuthInterface authInterface = flickr.getAuthInterface();
 		
@@ -41,15 +45,18 @@ public class Upload {
 		
 		Uploader uploader = flickr.getUploader();
 		
-		File file = new File("/home/heitorrapcinski/Imagens/copia/163_by_e4v.jpg");
-		
 		UploadMetaData metaData = new UploadMetaData();
 		metaData.setTitle(file.getName());
+		metaData.setTags(tags);
 		
 		String photoId = uploader.upload(file, metaData);
 		
-		System.out.println(photoId);
+		System.out.println(photoId + " " + file.getName() + " " + tags);
+	}
 
+	public static void main(String[] args) throws Exception {
+		Upload upload = new Upload();
+		upload.execute(new File("/home/heitorrapcinski/Imagens/copia/163_by_e4v.jpg"), null);
 	}
 
 }
