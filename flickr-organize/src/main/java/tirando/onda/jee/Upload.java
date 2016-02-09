@@ -35,7 +35,7 @@ public class Upload {
 		}
 	}
 	
-	public void execute(File file, Collection<String> tags) throws Exception {
+	public void execute(File file, Collection<String> tags, String contentType, String fileMimeType) throws Exception {
 		Flickr flickr = new Flickr("dc197c9a770087f7989fc4f5dbfdef40", "5092e6a6a1c841ec", new REST());
 		AuthInterface authInterface = flickr.getAuthInterface();
 		
@@ -49,17 +49,23 @@ public class Upload {
 		metaData.setTitle(file.getName());
 		metaData.setTags(tags);
 		
+		metaData.setFilename(file.getName());
+		
+		metaData.setContentType(contentType);
+		metaData.setFilemimetype(fileMimeType);
+		
 		System.out.print(file.getName() + " " + tags + " ");
 		
 		String photoId = uploader.upload(file, metaData);
 		
 		System.out.println(photoId);
-		
 	}
 
 	public static void main(String[] args) throws Exception {
 		Upload upload = new Upload();
-		upload.execute(new File("/home/heitorrapcinski/Imagens/copia/163_by_e4v.jpg"), null);
+		upload.execute(
+				new File("/media/heitorrapcinski/RPCNSK/Photo/2005/20050703 - Foto de Formatura da Juliana/MOV01827.MPG"),
+				null, Flickr.CONTENTTYPE_OTHER, "video/mpeg");
 	}
 
 }
