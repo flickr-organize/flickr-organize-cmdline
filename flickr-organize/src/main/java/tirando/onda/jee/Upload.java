@@ -49,9 +49,12 @@ public class Upload {
 		metaData.setTitle(file.getName());
 		metaData.setTags(tags);
 		
+		System.out.print(file.getName() + " " + tags + " ");
+		
 		String photoId = uploader.upload(file, metaData);
 		
-		System.out.println(photoId + " " + file.getName() + " " + tags);
+		System.out.println(photoId);
+		
 	}
 
 	public static void main(String[] args) throws Exception {
