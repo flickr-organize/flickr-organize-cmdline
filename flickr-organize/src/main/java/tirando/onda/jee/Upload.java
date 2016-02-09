@@ -56,7 +56,20 @@ public class Upload {
 		
 		System.out.print(file.getName() + " " + tags + " ");
 		
-		String photoId = uploader.upload(file, metaData);
+		String photoId = "";
+		try {
+			photoId = uploader.upload(file, metaData);
+			Thread.sleep(1000);
+		} catch (Exception e) {
+			e.printStackTrace();
+			try {
+				System.out.println("new try");
+				Thread.sleep(60000);
+				photoId = uploader.upload(file, metaData);
+			} catch (Exception e1) {
+				throw e1;
+			}
+		}
 		
 		System.out.println(photoId);
 	}
