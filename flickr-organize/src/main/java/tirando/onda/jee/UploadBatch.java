@@ -34,17 +34,18 @@ public class UploadBatch {
 			up.execute(source, tags);
 			
 			count++;
+			System.out.println(count);
+
 		}	
 	}
 
 	public static void main(String[] args) throws Exception {
-		File source = new File("/media/heitorrapcinski/RPCNSK/Photo/2003/");
+		File source = new File("/media/heitorrapcinski/RPCNSK/Photo/2004/");
 		
 		UploadBatch up = new UploadBatch();
 		up.upload(source);
 
 		
-		System.out.println(up.count);
 	}
 
 }
