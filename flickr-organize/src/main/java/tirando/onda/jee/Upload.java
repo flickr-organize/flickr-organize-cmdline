@@ -70,7 +70,7 @@ public class Upload {
 				throw e1;
 			}
 		}
-		
+
 		System.out.println(photoId);
 	}
 
