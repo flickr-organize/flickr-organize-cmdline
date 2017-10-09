@@ -59,7 +59,6 @@ public class Upload {
 		String photoId = "";
 		try {
 			photoId = uploader.upload(file, metaData);
-			Thread.sleep(1000);
 		} catch (Exception e) {
 			e.printStackTrace();
 			try {
@@ -75,10 +74,10 @@ public class Upload {
 	}
 
 	public static void main(String[] args) throws Exception {
-		Upload upload = new Upload();
-		upload.execute(
-				new File("/media/heitorrapcinski/RPCNSK/Photo/2005/20050703 - Foto de Formatura da Juliana/MOV01827.MPG"),
-				null, Flickr.CONTENTTYPE_OTHER, "video/mpeg");
+//		Upload upload = new Upload();
+//		upload.execute(
+//				new File("/media/heitorrapcinski/RPCNSK/Photo/2005/20050703 - Foto de Formatura da Juliana/MOV01827.MPG"),
+//				null, Flickr.CONTENTTYPE_OTHER, "video/mpeg");
 	}
 
 }

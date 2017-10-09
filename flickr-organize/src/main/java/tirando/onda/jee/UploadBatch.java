@@ -58,7 +58,7 @@ public class UploadBatch {
 				contentType = Flickr.CONTENTTYPE_OTHER;
 			}
 
-			if (mimeType.equals("image/jpeg") || mimeType.equals("video/mpeg") || mimeType.equals("video/quicktime")) {
+			if (mimeType.equals("image/jpeg") /*|| mimeType.equals("video/mpeg") || mimeType.equals("video/quicktime")*/) {
 				Upload up = new Upload();
 				up.execute(source, tags, contentType, mimeType);
 			}

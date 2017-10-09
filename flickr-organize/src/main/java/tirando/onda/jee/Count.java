@@ -28,7 +28,6 @@ public class Count {
 			} else {
 				count.put("Directory", 1);
 			}
-			System.out.println(count);	
 		} else {
 			
 			StringTokenizer st = new StringTokenizer(source.getParent(), " /-");
@@ -47,7 +46,6 @@ public class Count {
 			} else {
 				count.put(mimeType, 1);
 			}
-			System.out.println(count);
 			
 		}	
 	}
@@ -57,6 +55,18 @@ public class Count {
 		
 		Count c = new Count();
 		c.count(source);
+		
+		System.out.println("2005");
+		System.out.println(c.count);
+
+		source = new File("/media/heitorrapcinski/RPCNSK/Photo/2006/");
+		
+		c = new Count();
+		c.count(source);
+		
+		System.out.println("2006");
+		System.out.println(c.count);
+	
 	}
 
 }
